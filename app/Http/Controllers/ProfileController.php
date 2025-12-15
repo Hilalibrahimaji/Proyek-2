@@ -6,79 +6,93 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use Exception;
 
 class ProfileController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        return view('profile.index', compact('user')); // Perhatikan: profil bukan profile
+        return view('profile.index', [
+            'user' => Auth::user()
+        ]);
     }
 
- public function update(Request $request)
-{
-    $user = Auth::user();
+    public function update(Request $request)
+    {
+        $user = Auth::user();
 
-    // Validasi data
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email,' . $user->id,
-        'phone' => 'nullable|string|max:20',
-        'address' => 'nullable|string|max:255',
-        'city' => 'nullable|string|max:255',
-        'postal_code' => 'nullable|string|max:10',
-        'country' => 'nullable|string|max:255',
-        'birth_date' => 'nullable|date',
-        'gender' => 'nullable|in:male,female,other',
-        'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'current_password' => 'nullable|required_with:new_password',
-        'new_password' => 'nullable|min:8|confirmed',
-    ]);
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string',
+            'city' => 'nullable|string',
+            'postal_code' => 'nullable|string|max:10',
+            'country' => 'nullable|string',
+            'birth_date' => 'nullable|date',
+            'gender' => 'nullable|in:male,female,other',
 
-    try {
-        // Update data user
-        $updateData = [
+            // AVATAR
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+
+            // PASSWORD
+            'current_password' => 'nullable|required_with:new_password',
+            'new_password' => 'nullable|min:8|confirmed',
+        ]);
+
+        /* ======================
+           UPDATE DATA PROFIL
+        ====================== */
+        $user->update([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'phone' => $validated['phone'] ?? $user->phone,
-            'address' => $validated['address'] ?? $user->address,
-            'city' => $validated['city'] ?? $user->city,
-            'postal_code' => $validated['postal_code'] ?? $user->postal_code,
-            'country' => $validated['country'] ?? $user->country,
-            'birth_date' => $validated['birth_date'] ?? $user->birth_date,
-            'gender' => $validated['gender'] ?? $user->gender,
-        ];
+            'phone' => $validated['phone'] ?? null,
+            'address' => $validated['address'] ?? null,
+            'city' => $validated['city'] ?? null,
+            'postal_code' => $validated['postal_code'] ?? null,
+            'country' => $validated['country'] ?? null,
+            'birth_date' => $validated['birth_date'] ?? null,
+            'gender' => $validated['gender'] ?? null,
+        ]);
 
-        // Photo upload
-        if ($request->hasFile('photo')) {
-            // Delete old photo
-            if ($user->photo) {
-                Storage::delete('public/photos/' . $user->photo);
+        /* ======================
+           UPLOAD AVATAR
+        ====================== */
+        if ($request->hasFile('avatar')) {
+
+            // hapus avatar lama
+            if ($user->avatar && Storage::disk('public')->exists('avatars/' . $user->avatar)) {
+                Storage::disk('public')->delete('avatars/' . $user->avatar);
             }
 
-            $photoName = time() . '_' . $user->id . '.' . $request->photo->getClientOriginalExtension();
-            $request->photo->storeAs('public/photos', $photoName);
-            $updateData['photo'] = $photoName;
+            $avatarName = time() . '_' . $user->id . '.' . $request->avatar->extension();
+
+            // INI YANG BENAR
+            $request->avatar->storeAs(
+                'avatars',
+                $avatarName,
+                'public'
+            );
+
+            $user->update([
+                'avatar' => $avatarName
+            ]);
         }
 
-        // Password update
+        /* ======================
+           UPDATE PASSWORD
+        ====================== */
         if ($request->filled('current_password')) {
-            if (Hash::check($request->current_password, $user->password)) {
-                $updateData['password'] = Hash::make($request->new_password);
-            } else {
-                return redirect()->back()->withErrors(['current_password' => 'Current password is incorrect.']);
+            if (!Hash::check($request->current_password, $user->password)) {
+                return back()->withErrors([
+                    'current_password' => 'Password lama salah'
+                ]);
             }
+
+            $user->update([
+                'password' => Hash::make($request->new_password)
+            ]);
         }
 
-        // Update data menggunakan update() method
-        $user->update($updateData);
-
-    } catch (Exception $e) {
-        return redirect()->back()->withErrors(['error' => 'Failed to update profile: ' . $e->getMessage()]);
+        return back()->with('success', 'Profile updated successfully!');
     }
-
-    return redirect()->route('profile')->with('success', 'Profile updated successfully!');
-}
 }
