@@ -69,7 +69,7 @@
                     <div class="mb-6">
                         <h3 class="text-lg font-semibold text-gray-800 mb-2">Product Details</h3>
                         <ul class="text-gray-600 space-y-1">
-                            <li><strong>Category:</strong> {{ $product->category }}</li>
+                    
                             <li><strong>Stock:</strong> <span class="{{ $product->inStock() ? 'text-green-600' : 'text-red-600' }}">{{ $product->stock }} items available</span></li>
                             <li><strong>SKU:</strong> VHGH-{{ str_pad($product->id, 4, '0', STR_PAD_LEFT) }}</li>
                         </ul>
@@ -83,38 +83,56 @@
                             </span>
                         </div>
 
-                        @if($product->inStock())
-                        <form action="{{ route('cart.add') }}" method="POST" class="space-y-4">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            
-                            <div class="flex items-center space-x-4">
-                                <label for="quantity" class="text-gray-700 font-medium">Quantity:</label>
-                                <div class="flex items-center border border-gray-300 rounded-lg">
-                                    <button type="button" class="px-3 py-2 text-gray-600 hover:text-gray-800" onclick="decreaseQuantity()">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ $product->stock }}" 
-                                           class="w-16 text-center border-0 focus:ring-0">
-                                    <button type="button" class="px-3 py-2 text-gray-600 hover:text-gray-800" onclick="increaseQuantity()">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <span class="text-sm text-gray-500">Max: {{ $product->stock }}</span>
-                            </div>
+                     @if($product->inStock())
+<form action="{{ route('cart.add') }}" method="POST" id="addToCartForm">
+    @csrf
+    <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                            <div class="flex space-x-4">
-                                <button type="submit" 
-                                        class="flex-1 bg-[#10a2a2] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#0d8c8c] transition duration-300 flex items-center justify-center">
-                                    <i class="fas fa-cart-plus mr-2"></i> Add to Cart
-                                </button>
-                                <button type="button" 
-                                        onclick="buyNow()"
-                                        class="flex-1 bg-gray-800 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-900 transition duration-300 flex items-center justify-center">
-                                    <i class="fas fa-bolt mr-2"></i> Buy Now
-                                </button>
-                            </div>
-                        </form>
+    <!-- QUANTITY -->
+    <div class="flex items-center gap-4 mb-6">
+        <span class="font-medium text-gray-700">Quantity:</span>
+
+        <div class="flex items-center border rounded-lg">
+            <button type="button" onclick="decreaseQuantity()"
+                class="px-3 py-2 text-gray-600">−</button>
+
+            <input type="number" id="quantity" name="quantity"
+                value="1" min="1" max="{{ $product->stock }}"
+                class="w-16 text-center border-0 focus:ring-0">
+
+            <button type="button" onclick="increaseQuantity()"
+                class="px-3 py-2 text-gray-600">+</button>
+        </div>
+
+        <span class="text-sm text-gray-500">
+            Max: {{ $product->stock }}
+        </span>
+    </div>
+
+    <!-- BUTTONS (INI YANG HILANG DI KAMU) -->
+    <div class="flex gap-4">
+        <!-- ADD TO CART -->
+        <button type="submit"
+            class="flex-1 bg-[#10a2a2] text-white py-3 px-6 rounded-lg
+                   font-semibold hover:bg-[#0d8c8c]
+                   flex items-center justify-center">
+            <i class="fas fa-cart-plus mr-2"></i>
+            Add to Cart
+        </button>
+
+        <!-- BUY NOW -->
+        <button type="button"
+            onclick="buyNow()"
+            class="flex-1 bg-gray-800 text-white py-3 px-6 rounded-lg
+                   font-semibold hover:bg-gray-900
+                   flex items-center justify-center">
+            <i class="fas fa-bolt mr-2"></i>
+            Buy Now
+        </button>
+    </div>
+</form>
+
+
                         @else
                         <div class="text-center py-4">
                             <p class="text-red-600 font-semibold mb-4">This product is currently out of stock</p>
@@ -151,24 +169,7 @@
         </div>
 
         <!-- Related Products -->
-        <div class="mt-16">
-            <h2 class="text-2xl font-bold text-gray-800 mb-8">Related Products</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <!-- Sample related products -->
-                @for($i = 1; $i <= 4; $i++)
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                    <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Related Product {{ $i }}" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="font-semibold mb-2 text-gray-800">Anime Figure {{ $i }}</h3>
-                        <p class="text-[#10a2a2] font-bold text-lg mb-3">${{ rand(20, 50) }}.99</p>
-                        <a href="#" class="block text-center bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-900 transition duration-300">
-                            View Details
-                        </a>
-                    </div>
-                </div>
-                @endfor
-            </div>
+      
         </div>
     </div>
 </section>

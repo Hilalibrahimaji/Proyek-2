@@ -89,28 +89,46 @@ class CartController extends Controller
         return redirect()->route('cart')->with('success', 'Item removed from cart successfully!');
     }
 
-    public function update(Request $request)
-    {
-        $request->validate([
-            'item_id' => 'required|exists:cart_items,id',
-            'quantity' => 'required|integer|min:1'
+   public function update(Request $request)
+{
+    $request->validate([
+        'item_id' => 'required|exists:cart_items,id',
+        'quantity' => 'required|integer'
+    ]);
+
+    $cartItem = CartItem::with('product')
+        ->where('id', $request->item_id)
+        ->where('user_id', Auth::id())
+        ->firstOrFail();
+
+    // 🔥 JIKA QUANTITY < 1 → HAPUS ITEM
+    if ($request->quantity < 1) {
+        $cartItem->delete();
+
+        return response()->json([
+            'success' => true,
+            'removed' => true
         ]);
-
-        $cartItem = CartItem::with('product')
-            ->where('id', $request->item_id)
-            ->where('user_id', Auth::id())
-            ->firstOrFail();
-
-        // Check stock
-        if ($cartItem->product->stock < $request->quantity) {
-            return redirect()->route('cart')
-                ->with('error', 'Not enough stock available. Only ' . $cartItem->product->stock . ' items left.');
-        }
-
-        $cartItem->update(['quantity' => $request->quantity]);
-
-        return redirect()->route('cart')->with('success', 'Cart updated successfully!');
     }
+
+    // 🔒 CEK STOCK
+    if ($request->quantity > $cartItem->product->stock) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Not enough stock available'
+        ]);
+    }
+
+    $cartItem->update([
+        'quantity' => $request->quantity
+    ]);
+
+    return response()->json([
+        'success' => true,
+        'quantity' => $cartItem->quantity
+    ]);
+}
+
 
     public function clear()
     {

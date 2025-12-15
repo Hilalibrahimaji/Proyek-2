@@ -8,8 +8,9 @@
         <h1 class="text-3xl font-bold text-gray-800">Product Management</h1>
         <p class="text-gray-600">Manage all products in the store</p>
     </div>
-    <a href="{{ route('admin.products.create') }}" 
-       class="bg-[#10a2a2] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#0d8c8c] transition duration-300">
+   <a href="{{ route('admin.products.create') }}" 
+   class="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition duration-300">
+
         <i class="fas fa-plus mr-2"></i> Add New Product
     </a>
 </div>
@@ -30,7 +31,6 @@
             <thead>
                 <tr class="bg-gray-50 border-b border-gray-200">
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
@@ -50,11 +50,7 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">
-                            {{ $product->category }}
-                        </span>
-                    </td>
+                  
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         ${{ number_format($product->price, 2) }}
                     </td>

@@ -101,7 +101,7 @@ class AdminController extends Controller
             'price' => 'required|numeric|min:0',
             'image' => 'required|url',
             'stock' => 'required|integer|min:0',
-            'category' => 'required|string|max:100'
+           
         ]);
 
         Product::create($request->all());
@@ -131,7 +131,7 @@ class AdminController extends Controller
             'price' => 'required|numeric|min:0',
             'image' => 'required|url',
             'stock' => 'required|integer|min:0',
-            'category' => 'required|string|max:100'
+       
         ]);
 
         $product->update($request->all());

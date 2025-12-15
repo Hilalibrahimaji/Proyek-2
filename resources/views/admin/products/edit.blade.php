@@ -98,26 +98,11 @@
 
             <!-- Category & Image -->
             <div class="md:col-span-2">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Media & Category</h3>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Media</h3>
             </div>
 
             <!-- Category -->
-            <div>
-                <label for="category" class="block text-sm font-medium text-gray-700 mb-2">Category *</label>
-                <select id="category" name="category" required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10a2a2] focus:border-[#10a2a2] transition duration-300">
-                    <option value="">Select Category</option>
-                    <option value="Figures" {{ old('category', $product->category) == 'Figures' ? 'selected' : '' }}>Figures</option>
-                    <option value="Apparel" {{ old('category', $product->category) == 'Apparel' ? 'selected' : '' }}>Apparel</option>
-                    <option value="Accessories" {{ old('category', $product->category) == 'Accessories' ? 'selected' : '' }}>Accessories</option>
-                    <option value="Collectibles" {{ old('category', $product->category) == 'Collectibles' ? 'selected' : '' }}>Collectibles</option>
-                    <option value="Posters" {{ old('category', $product->category) == 'Posters' ? 'selected' : '' }}>Posters</option>
-                    <option value="Keychains" {{ old('category', $product->category) == 'Keychains' ? 'selected' : '' }}>Keychains</option>
-                </select>
-                @error('category')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
+          
 
             <!-- Image URL -->
             <div>
@@ -162,10 +147,10 @@
                    class="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 transition duration-300">
                     Cancel
                 </a>
-                <button type="submit" 
-                        class="bg-[#10a2a2] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#0d8c8c] transition duration-300 transform hover:scale-105 shadow-md">
-                    <i class="fas fa-save mr-2"></i>Update Product
-                </button>
+              <button type="submit" 
+        class="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-md">
+    <i class="fas fa-save mr-2"></i>Update Product
+</button>
             </div>
         </div>
     </form>

@@ -25,7 +25,7 @@
     <form action="{{ route('admin.products.store') }}" method="POST" class="p-6">
         @csrf
         
-        < class="grid grid-cols-1 md:grid-cols-2 gap-6">
+       
             <!-- Basic Information -->
             <div class="md:col-span-2">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Basic Information</h3>
@@ -83,18 +83,12 @@
                 @enderror
             </div>
 
-            <!-- Category & Image -->
+            <!-- Image -->
             <div class="md:col-span-2">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Media & Category</h3>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Media</h3>
             </div>
 
-            
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-    <p class="text-blue-800 text-sm">
-        <i class="fas fa-tshirt mr-2"></i>
-        Category: <strong>T-Shirt</strong> (fixed for all products)
-    </p>
-</div>
+        
 
             <!-- Image URL -->
             <div>
@@ -127,10 +121,12 @@
                class="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 transition duration-300">
                 Cancel
             </a>
-            <button type="submit" 
-                    class="bg-[#10a2a2] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#0d8c8c] transition duration-300 transform hover:scale-105 shadow-md">
-                <i class="fas fa-save mr-2"></i>Create Product
-            </button>
+         <button type="submit"
+        class="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-md">
+    <i class="fas fa-save mr-2"></i>Create Product
+</button>
+
+
         </div>
     </form>
 </div>

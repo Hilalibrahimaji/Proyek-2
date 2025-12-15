@@ -165,7 +165,7 @@
             <!-- Order Summary -->
             @if($cartItems->count() > 0)
             <div class="lg:w-1/3">
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 sticky top-4">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 stay top-4">
                     <div class="border-b border-gray-200 px-6 py-4">
                         <h2 class="text-xl font-semibold text-gray-800">Order Summary</h2>
                     </div>
