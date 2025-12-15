@@ -5,25 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\CartItems;
+use App\Models\CartItem;
 use App\Models\Order;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    // ======================
+    // FIX UTAMA DI SINI
+    // ======================
     protected $fillable = [
         'name',
         'email',
         'password',
-        'role',
+        'avatar', // ✔ WAJIB avatar, BUKAN photo
         'phone',
         'address',
         'city',
         'postal_code',
         'country',
         'birth_date',
-        'gender'
+        'gender',
     ];
 
     protected $hidden = [
@@ -32,22 +35,26 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
+        'email_verified_at' => 'datetime',
         'birth_date' => 'date',
     ];
 
-    // Relationship dengan CartItem
-    public function CartItem()
+    // ======================
+    // RELATIONSHIPS
+    // ======================
+    public function cartItems()
     {
         return $this->hasMany(CartItem::class);
     }
 
-    // Relationship dengan Order
-    public function Order()
+    public function orders()
     {
         return $this->hasMany(Order::class);
     }
 
-    // Helper methods
+    // ======================
+    // HELPERS
+    // ======================
     public function isAdmin()
     {
         return $this->role === 'admin';
@@ -60,7 +67,7 @@ class User extends Authenticatable
 
     public function getCartCountAttribute()
     {
-        return $this->CartItem()->count();
+        return $this->cartItems()->count();
     }
 
     public function getOrdersCountAttribute()
@@ -68,45 +75,15 @@ class User extends Authenticatable
         return $this->orders()->count();
     }
 
-    public function getTotalSpentAttribute()
+    // ======================
+    // AVATAR ACCESSOR (FINAL)
+    // ======================
+    public function getAvatarUrlAttribute()
     {
-        return $this->orders()->where('payment_status', 'paid')->sum('total');
-    }
-
-    public function getFormattedTotalSpentAttribute()
-    {
-        return '$' . number_format($this->total_spent, 2);
-    }
-
-    public function getFullNameAttribute()
-    {
-        return $this->name;
-    }
-
-    public function getFormattedPhoneAttribute()
-    {
-        return $this->phone ?: 'Not set';
-    }
-
-    public function getFormattedAddressAttribute()
-    {
-        if ($this->address && $this->city && $this->postal_code) {
-            return "{$this->address}, {$this->city}, {$this->postal_code}";
+        if ($this->avatar) {
+            return asset('storage/avatars/' . $this->avatar);
         }
-        return 'Not set';
-    }
 
-    public function getProfileCompletionAttribute()
-    {
-        $fields = ['name', 'email', 'phone', 'address', 'city', 'country'];
-        $completed = 0;
-        
-        foreach ($fields as $field) {
-            if (!empty($this->$field)) {
-                $completed++;
-            }
-        }
-        
-        return round(($completed / count($fields)) * 100);
+        return asset('images/default-avatar.png');
     }
 }
