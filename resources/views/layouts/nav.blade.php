@@ -79,9 +79,6 @@
                                 <a href="{{ route('profile') }}" class="dropdown-item">
                                     <i class="fas fa-user mr-2"></i> Profile
                                 </a>
-                                <a href="{{ route('cart') }}" class="dropdown-item">
-                                    <i class="fas fa-shopping-cart mr-2"></i> Cart
-                                </a>
                             @endif
 
                             <form method="POST" action="{{ route('logout') }}">

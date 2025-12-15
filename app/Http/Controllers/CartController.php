@@ -8,22 +8,23 @@ use App\Models\CartItem;
 use App\Models\Product;
 
 class CartController extends Controller
+{public function index()
 {
-    public function index()
-    {
-        $user = Auth::user();
-        $cartItems = $user->CartItem()->with('product')->get();
+    $user = Auth::user();
 
-        $subtotal = $cartItems->sum(function($item) {
-            return $item->quantity * $item->product->price;
-        });
+    $cartItems = $user->cartItems()->with('product')->get();
 
-        $shipping = $subtotal > 50 ? 0 : 5.99; // Free shipping over $50
-        $tax = $subtotal * 0.1; // 10% tax
-        $total = $subtotal + $shipping + $tax;
+    $subtotal = $cartItems->sum(function ($item) {
+        return $item->quantity * $item->product->price;
+    });
 
-        return view('cart.index', compact('cartItems', 'subtotal', 'shipping', 'tax', 'total'));
-    }
+    $shipping = $subtotal > 50 ? 0 : 5.99;
+    $tax = $subtotal * 0.1;
+    $total = $subtotal + $shipping + $tax;
+
+    return view('cart.index', compact('cartItems', 'subtotal', 'shipping', 'tax', 'total'));
+}
+
 
     public function add(Request $request)
     {
@@ -128,7 +129,6 @@ class CartController extends Controller
         'quantity' => $cartItem->quantity
     ]);
 }
-
 
     public function clear()
     {
