@@ -15,7 +15,8 @@ class CheckoutController extends Controller
     public function show()
     {
         $user = Auth::user();
-        $cartItems = $user->CartItem()->with('product')->get();
+      $cartItems = $user->cartItems()->with('product')->get();
+
 
         if ($cartItems->isEmpty()) {
             return redirect()->route('cart')->with('error', 'Your cart is empty.');
@@ -38,7 +39,8 @@ class CheckoutController extends Controller
     public function process(Request $request)
     {
         $user = Auth::user();
-        $cartItems = $user->CartItem()->with('product')->get();
+       $cartItems = $user->cartItems()->with('product')->get();
+
 
         if ($cartItems->isEmpty()) {
             return redirect()->route('cart')->with('error', 'Your cart is empty.');
