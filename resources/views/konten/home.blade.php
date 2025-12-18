@@ -49,9 +49,6 @@
                         <img src="https://images.unsplash.com/photo-1578632749014-ca77efd052eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
                             alt="Anime Collection" 
                             class="rounded-lg shadow-2xl transform hover:scale-105 transition duration-300">
-                        <div class="absolute -bottom-4 -left-4 bg-purple-600 text-white px-6 py-2 rounded-full font-bold">
-                            NEW 2025
-                        </div>
                     </div>
                 </div>
             </div>
