@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\MidtransController;
 
 
 
@@ -71,6 +72,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::get('/checkout/success/{orderId}', [CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/checkout/cancel/{orderId}', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+    Route::get('/checkout/failed/{order}', [CheckoutController::class, 'failed'])
+    ->name('checkout.failed');
+
+Route::post('/midtrans/callback', [MidtransController::class, 'callback']);
+
 
 });
 
