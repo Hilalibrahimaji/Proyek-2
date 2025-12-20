@@ -7,13 +7,31 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        // Ambil semua t-shirts dari database
-        $products = Product::latest()->get();
+   public function index(Request $request)
+{
+    $products = Product::query();
 
-        return view('products.index', compact('products'));
+    // SEARCH (biar search + sort bisa barengan)
+    if ($request->q) {
+        $products->where('name', 'like', '%' . $request->q . '%');
     }
+
+    // SORT
+    if ($request->sort === 'price_asc') {
+        $products->orderBy('price', 'asc');
+    } elseif ($request->sort === 'price_desc') {
+        $products->orderBy('price', 'desc');
+    } else {
+        // DEFAULT = LATEST
+        $products->orderBy('created_at', 'desc');
+    }
+
+    return view('products.index', [
+        'products' => $products->get(),
+        'query' => $request->q
+    ]);
+}
+
 
     public function search(Request $request)
     {

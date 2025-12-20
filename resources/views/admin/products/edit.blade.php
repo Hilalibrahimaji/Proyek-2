@@ -16,7 +16,7 @@
 
 <div class="bg-white rounded-lg shadow-sm border border-gray-200">
     <!-- Form Header -->
-    <div class="border-b border-gray-200 px-6 py-4">
+    <div class="border-b border-gray-200 px-6 py-4">    
         <h2 class="text-xl font-semibold text-gray-800">Edit Product Information</h2>
         <p class="text-gray-600 text-sm mt-1">Update the details for {{ $product->name }}</p>
     </div>
@@ -60,18 +60,35 @@
             </div>
 
             <!-- Price -->
-            <div>
-                <label for="price" class="block text-sm font-medium text-gray-700 mb-2">Price ($) *</label>
-                <div class="relative">
-                    <span class="absolute left-3 top-3 text-gray-500">$</span>
-                    <input type="number" id="price" name="price" value="{{ old('price', $product->price) }}" step="0.01" min="0" required
-                           class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10a2a2] focus:border-[#10a2a2] transition duration-300"
-                           placeholder="0.00">
-                </div>
-                @error('price')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
+           <div>
+    <label for="price" class="block text-sm font-medium text-gray-700 mb-2">
+        Price (Rp) *
+    </label>
+
+    <div class="relative">
+        <span
+            class="absolute inset-y-0 left-4 flex items-center text-gray-500 font-medium pointer-events-none">
+            Rp
+        </span>
+
+        <input
+            type="text"
+            id="price"
+            name="price"
+            value="{{ old('price', $product->price) }}"
+            required
+            inputmode="numeric"
+            class="w-full pl-14 pr-4 py-3 border border-gray-300 rounded-lg
+                   focus:outline-none focus:ring-2 focus:ring-[#10a2a2]
+                   focus:border-[#10a2a2] transition duration-300"
+            placeholder="0"
+        >
+    </div>
+
+    @error('price')
+        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+    @enderror
+</div>
 
             <!-- Stock -->
             <div>
@@ -90,10 +107,13 @@
                     <p class="text-sm text-gray-600">Total Sold</p>
                     <p class="text-lg font-bold text-[#10a2a2]">{{ $product->total_sold }}</p>
                 </div>
-                <div class="text-center">
-                    <p class="text-sm text-gray-600">Total Revenue</p>
-                    <p class="text-lg font-bold text-[#10a2a2]">{{ $product->formatted_total_revenue }}</p>
-                </div>
+              <div class="text-center">
+    <p class="text-sm text-gray-600">Total Revenue</p>
+    <p class="text-lg font-bold text-[#10a2a2]">
+        Rp {{ number_format($product->total_revenue, 0, ',', '.') }}
+    </p>
+</div>
+
             </div>
 
             <!-- Category & Image -->

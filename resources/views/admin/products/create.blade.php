@@ -60,12 +60,12 @@
 
             <!-- Price -->
             <div>
-                <label for="price" class="block text-sm font-medium text-gray-700 mb-2">Price ($) *</label>
+                <label for="price" class="block text-sm font-medium text-gray-700 mb-2">Price (Rp) *</label>
                 <div class="relative">
-                    <span class="absolute left-3 top-3 text-gray-500">$</span>
-                    <input type="number" id="price" name="price" value="{{ old('price') }}" step="0.01" min="0" required
-                           class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10a2a2] focus:border-[#10a2a2] transition duration-300"
-                           placeholder="0.00">
+                   <span class="absolute left-3 top-3 text-gray-500">Rp</span>
+    <input type="number" id="price" name="price" value="{{ old('price') }}" min="0" required
+           class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10a2a2] focus:border-[#10a2a2] transition duration-300"
+           placeholder="0">
                 </div>
                 @error('price')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

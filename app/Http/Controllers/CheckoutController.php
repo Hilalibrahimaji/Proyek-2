@@ -31,8 +31,9 @@ class CheckoutController extends Controller
         }
 
         $subtotal = $cartItems->sum(fn ($item) => $item->quantity * $item->product->price);
-        $shipping = $subtotal > 50000 ? 0 : 5999;
-        $tax = $subtotal * 0.1;
+       $shipping = $subtotal >= 500000 ? 0 : 15000;
+       $tax = (int) round($subtotal * 0.01);
+
         $total = $subtotal + $shipping + $tax;
 
         return view('checkout.show', compact(
@@ -71,8 +72,9 @@ class CheckoutController extends Controller
         $subtotal = (int) round(
             $cartItems->sum(fn ($item) => $item->quantity * $item->product->price)
         );
-        $shipping = $subtotal > 50000 ? 0 : 5999;
-        $tax = (int) round($subtotal * 0.1);
+        $shipping = $subtotal >= 500000 ? 0 : 15000;
+
+        $tax = (int) round($subtotal * 0.01);
         $total = $subtotal + $shipping + $tax;
 
         // ===== BUAT ORDER =====
@@ -111,25 +113,48 @@ class CheckoutController extends Controller
         Config::$is3ds = true;
 
         // ===== PARAMETER MIDTRANS =====
-        $params = [
-            'transaction_details' => [
-                'order_id' => $order->order_number,
-                'gross_amount' => (int) $order->total,
-            ],
-            'customer_details' => [
-                'first_name' => $request->shipping_name,
-                'email' => $request->shipping_email,
-                'phone' => $request->shipping_phone,
-            ],
-            'item_details' => $cartItems->map(function ($item) {
-                return [
-                    'id' => $item->product_id,
-                    'price' => (int) round($item->product->price),
-                    'quantity' => $item->quantity,
-                    'name' => $item->product->name,
-                ];
-            })->toArray(),
-        ];
+
+        $itemDetails = [];
+
+foreach ($cartItems as $item) {
+    $itemDetails[] = [
+        'id' => 'product-' . $item->product_id,
+        'price' => (int) round($item->product->price),
+        'quantity' => $item->quantity,
+        'name' => $item->product->name,
+    ];
+}
+
+if ($shipping > 0) {
+    $itemDetails[] = [
+        'id' => 'shipping',
+        'price' => (int) $shipping,
+        'quantity' => 1,
+        'name' => 'Shipping Fee',
+    ];
+}
+
+if ($tax > 0) {
+    $itemDetails[] = [
+        'id' => 'tax',
+        'price' => (int) $tax,
+        'quantity' => 1,
+        'name' => 'Tax 1%',
+    ];
+}
+
+      $params = [
+    'transaction_details' => [
+        'order_id' => $order->order_number,
+        'gross_amount' => (int) $order->total,
+    ],
+    'customer_details' => [
+        'first_name' => $request->shipping_name,
+        'email' => $request->shipping_email,
+        'phone' => $request->shipping_phone,
+    ],
+    'item_details' => $itemDetails,
+];
 
         // ===== SNAP TOKEN =====
         $snapToken = Snap::getSnapToken($params);

@@ -18,9 +18,11 @@ class CartController extends Controller
         return $item->quantity * $item->product->price;
     });
 
-    $shipping = $subtotal > 50 ? 0 : 5.99;
-    $tax = $subtotal * 0.1;
-    $total = $subtotal + $shipping + $tax;
+   $subtotal = (int) $cartItems->sum(fn ($item) => $item->quantity * $item->product->price);
+$shipping = $subtotal >= 200000 ? 0 : 15000;
+$tax = (int) round($subtotal * 0.01);
+$total = $subtotal + $shipping + $tax;
+
 
     return view('cart.index', compact('cartItems', 'subtotal', 'shipping', 'tax', 'total'));
 }

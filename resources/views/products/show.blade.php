@@ -43,12 +43,20 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Product Images -->
-            <div>
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-4">
-                    <img src="{{ $product->image }}" alt="{{ $product->name }}" 
-                         class="w-full h-96 object-cover">
-                </div>
-            </div>
+           <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-4">
+    <div style="height:450px;
+            background:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            overflow:hidden;
+            border-radius:12px;">
+    <img src="{{ $product->image }}"
+         style="max-height:100%; max-width:100%; object-fit:contain;">
+</div>
+
+</div>
+
 
             <!-- Product Info -->
             <div>
@@ -77,7 +85,8 @@
 
                     <div class="border-t border-gray-200 pt-6 mb-6">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-3xl font-bold text-[#10a2a2]">${{ number_format($product->price, 2) }}</span>
+                           <span class="text-3xl font-bold text-[#10a2a2]">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+
                             <span class="px-3 py-1 rounded-full text-sm font-medium {{ $product->inStock() ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                                 {{ $product->inStock() ? 'In Stock' : 'Out of Stock' }}
                             </span>
@@ -112,13 +121,14 @@
     <!-- BUTTONS (INI YANG HILANG DI KAMU) -->
     <div class="flex gap-4">
         <!-- ADD TO CART -->
-        <button type="submit"
-            class="flex-1 bg-[#10a2a2] text-white py-3 px-6 rounded-lg
-                   font-semibold hover:bg-[#0d8c8c]
-                   flex items-center justify-center">
-            <i class="fas fa-cart-plus mr-2"></i>
-            Add to Cart
-        </button>
+       <button type="submit"
+    class="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg
+           font-semibold hover:bg-green-700
+           flex items-center justify-center">
+    <i class="fas fa-cart-plus mr-2"></i>
+    Add to Cart
+</button>
+
 
         <!-- BUY NOW -->
         <button type="button"

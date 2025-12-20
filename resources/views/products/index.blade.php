@@ -47,11 +47,28 @@
                 <div class="flex items-center space-x-4">
                     
                     
-                    <select class="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#10a2a2] focus:border-[#10a2a2]">
-                        <option>Sort by: Latest</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                    </select>
+                  <form method="GET" action="{{ route('products') }}">
+    {{-- biar search nggak ilang --}}
+    @if(request('q'))
+        <input type="hidden" name="q" value="{{ request('q') }}">
+    @endif
+
+    <select name="sort"
+            onchange="this.form.submit()"
+            class="border border-gray-300 rounded-lg px-4 py-3
+                   focus:outline-none focus:ring-2 focus:ring-[#10a2a2] focus:border-[#10a2a2]">
+        <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>
+            Sort by: Latest
+        </option>
+        <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>
+            Price: Low to High
+        </option>
+        <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>
+            Price: High to Low
+        </option>
+    </select>
+</form>
+
                 </div>
             </div>
 
@@ -61,18 +78,25 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     @foreach($products as $product)
     <!-- Di dalam product loop -->
-    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 transform hover:-translate-y-1">
+ <div class="bg-sky-200 rounded-lg shadow-md overflow-hidden">
+
         <a href="{{ route('products.show', $product->id) }}">
-            <img src="{{ $product->image }}" alt="{{ $product->name }}" 
-                class="w-full h-48 object-cover hover:scale-105 transition duration-300">
-        </a>
-        <div class="p-4">
+    <div class="w-full h-48 bg-white overflow-hidden">
+        <img src="{{ $product->image }}" alt="{{ $product->name }}"
+             class="w-full h-full object-contain p-4">
+    </div>
+</a>
+
+     <div class="p-4 bg-blue-200 border-t border-teal-200">
+
+
             <a href="{{ route('products.show', $product->id) }}" class="hover:text-[#10a2a2] transition duration-300">
                 <h3 class="font-semibold mb-2 text-gray-800">{{ $product->name }}</h3>
             </a>
             <p class="text-gray-600 text-sm mb-2">{{ Str::limit($product->description, 80) }}</p>
             <div class="flex justify-between items-center mb-3">
-                <span class="text-[#10a2a2] font-bold text-lg">${{ number_format($product->price, 2) }}</span>
+                <span class="text-[#10a2a2] font-bold text-lg">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+
                 <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">
                     {{ $product->stock > 0 ? 'In Stock' : 'Out of Stock' }}
                 </span>
@@ -82,7 +106,7 @@
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <input type="hidden" name="quantity" value="1">
                 <button type="submit" 
-                        class="bg-[#10a2a2] text-white px-4 py-2 rounded-lg w-full hover:bg-[#0d8c8c] transition duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                        class="bg-[#10a2a2] text-black px-4 py-2 rounded-lg w-full hover:bg-[#0d8c8c] transition duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                         {{ $product->stock == 0 ? 'disabled' : '' }}>
                     <i class="fas fa-cart-plus mr-2"></i> 
                     {{ $product->stock > 0 ? 'Add to Cart' : 'Out of Stock' }}

@@ -67,9 +67,9 @@
                                                     {{ $item->product->name }}
                                                 </a>
                                             </h3>
-                                            <p class="text-[#10a2a2] font-bold text-xl mb-2">
-                                                ${{ number_format($item->product->price, 2) }}
-                                            </p>
+                                           <p class="text-[#10a2a2] font-bold text-xl mb-2">
+                                            Rp {{ number_format($item->product->price, 0, ',', '.') }}</p>
+
                                             <p class="text-sm text-gray-600 mb-4">
                                                 @if($item->product->inStock())
                                                     <span class="text-green-600">{{ $item->product->stock }} items available</span>
@@ -112,9 +112,9 @@
                                         </div>
                                         <div class="text-right">
                                             <p class="text-gray-600 text-sm">Subtotal</p>
-                                            <p class="text-lg font-bold text-gray-800">
-                                                ${{ number_format($item->product->price * $item->quantity, 2) }}
-                                            </p>
+                                           <p class="text-lg font-bold text-gray-800">
+                                            Rp {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</p>
+
                                         </div>
                                     </div>
                                 </div>
@@ -175,7 +175,8 @@
                         <div class="space-y-3 mb-6">
                             <div class="flex justify-between text-gray-600">
                                 <span>Subtotal ({{ $cartItems->sum('quantity') }} items)</span>
-                                <span>${{ number_format($subtotal, 2) }}</span>
+                               <span>Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
+
                             </div>
                             <div class="flex justify-between text-gray-600">
                                 <span>Shipping</span>
@@ -183,18 +184,19 @@
                                     @if($shipping == 0)
                                         <span class="text-green-600">FREE</span>
                                     @else
-                                        ${{ number_format($shipping, 2) }}
+                                       Rp {{ number_format($shipping, 0, ',', '.') }}
+
                                     @endif
                                 </span>
                             </div>
                             <div class="flex justify-between text-gray-600">
                                 <span>Tax</span>
-                                <span>${{ number_format($tax, 2) }}</span>
+                                <span>Rp {{ number_format($tax, 0, ',', '.') }}</span>
                             </div>
                             <div class="border-t border-gray-200 pt-3">
                                 <div class="flex justify-between text-lg font-bold text-gray-800">
                                     <span>Total</span>
-                                    <span>${{ number_format($total, 2) }}</span>
+                                    <span>Rp {{ number_format($total, 0, ',', '.') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -235,7 +237,7 @@
                     <div class="space-y-3">
                         <div class="flex items-center">
                             <i class="fas fa-shipping-fast text-[#10a2a2] mr-3"></i>
-                            <span class="text-sm text-gray-600">Free shipping on orders over $50</span>
+                            <span class="text-sm text-gray-600">Free shipping on orders over Rp 300.000</span>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-shield-alt text-[#10a2a2] mr-3"></i>
