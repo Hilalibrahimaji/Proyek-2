@@ -10,17 +10,9 @@
                     Your trusted partner in becoming a better wibu. Quality products for anime and manga enthusiasts.
                 </p>
                 <div class="flex space-x-4">
-                    <a href="#" class="text-gray-300 hover:text-white transition duration-300">
-                        <i class="fab fa-facebook text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-300 hover:text-white transition duration-300">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+                   
+                    <a href="https://www.instagram.com/vhigh.id?igsh=bHZjajg3cWRnMXho" class="text-gray-300 hover:text-white transition duration-300">
                         <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-300 hover:text-white transition duration-300">
-                        <i class="fab fa-discord text-xl"></i>
                     </a>
                 </div>
             </div>
@@ -42,11 +34,11 @@
                 <ul class="space-y-2 text-gray-300">
                     <li class="flex items-center space-x-2">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>123 Anime Street, Tokyo</span>
+                        <span>Cirebon, Jawa Barat</span>
                     </li>
                     <li class="flex items-center space-x-2">
                         <i class="fas fa-phone"></i>
-                        <span>+81 3-1234-5678</span>
+                        <span>+62 812-5645-9876</span>
                     </li>
                     <li class="flex items-center space-x-2">
                         <i class="fas fa-envelope"></i>

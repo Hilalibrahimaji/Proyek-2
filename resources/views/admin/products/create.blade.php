@@ -93,7 +93,7 @@
             <!-- Image URL -->
             <div>
                 <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Image URL *</label>
-                <input type="url" id="image" name="image" value="{{ old('image') }}" required
+                <input type="text" id="image" name="image" value="{{ old('image') }}" required
                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10a2a2] focus:border-[#10a2a2] transition duration-300"
                        placeholder="https://example.com/image.jpg">
                 @error('image')
@@ -105,7 +105,10 @@
             <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Image Preview</label>
                 <div id="imagePreview" class="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hidden">
-                    <img id="previewImage" src="" alt="Preview" class="mx-auto max-h-48 rounded-lg hidden">
+                   <img id="previewImage"
+     referrerpolicy="no-referrer"
+     class="mx-auto max-h-48 rounded-lg hidden">
+
                     <p id="previewText" class="text-gray-500 text-sm mt-2">Image preview will appear here</p>
                 </div>
                 <div id="noPreview" class="mt-2 text-center py-8 border-2 border-dashed border-gray-300 rounded-lg">
@@ -133,66 +136,62 @@
 
 @push('scripts')
 <script>
-    // Image preview functionality
-    document.getElementById('image').addEventListener('input', function() {
-        const imageUrl = this.value;
-        const previewContainer = document.getElementById('imagePreview');
-        const previewImage = document.getElementById('previewImage');
-        const previewText = document.getElementById('previewText');
-        const noPreview = document.getElementById('noPreview');
+document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('image');
+    const previewContainer = document.getElementById('imagePreview');
+    const previewImage = document.getElementById('previewImage');
+    const previewText = document.getElementById('previewText');
+    const noPreview = document.getElementById('noPreview');
 
-        if (imageUrl) {
-            previewContainer.classList.remove('hidden');
-            noPreview.classList.add('hidden');
-            
-            previewImage.onload = function() {
-                previewImage.classList.remove('hidden');
-                previewText.textContent = 'Image preview loaded successfully';
-                previewText.className = 'text-green-600 text-sm mt-2';
-            };
-            
-            previewImage.onerror = function() {
-                previewImage.classList.add('hidden');
-                previewText.textContent = 'Failed to load image. Please check the URL.';
-                previewText.className = 'text-red-600 text-sm mt-2';
-            };
-            
-            previewImage.src = imageUrl;
-        } else {
+    input.addEventListener('input', () => {
+        const url = input.value.trim();
+
+        if (!url) {
             previewContainer.classList.add('hidden');
             noPreview.classList.remove('hidden');
+            previewImage.src = '';
+            previewText.textContent = '';
+            return;
         }
-    });
 
-    // Auto-format price input
-    document.getElementById('price').addEventListener('blur', function() {
-        const value = parseFloat(this.value);
-        if (!isNaN(value)) {
-            this.value = value.toFixed(2);
+        // validasi ekstensi gambar
+        if (!url.match(/\.(jpg|jpeg|png|webp)$/i)) {
+            previewContainer.classList.remove('hidden');
+            noPreview.classList.add('hidden');
+            previewImage.classList.add('hidden');
+            previewText.textContent = 'URL harus gambar (.jpg, .png, .webp)';
+            previewText.className = 'text-red-600 text-sm mt-2';
+            return;
         }
-    });
 
-    // Character counter for description
-    document.getElementById('description').addEventListener('input', function() {
-        const charCount = this.value.length;
-        const counter = document.getElementById('charCounter') || (function() {
-            const counter = document.createElement('div');
-            counter.id = 'charCounter';
-            counter.className = 'text-sm text-gray-500 mt-1';
-            this.parentNode.appendChild(counter);
-            return counter;
-        }).call(this);
-        
-        counter.textContent = `${charCount} characters`;
-        
-        if (charCount > 500) {
-            counter.className = 'text-sm text-red-600 mt-1';
-        } else if (charCount > 300) {
-            counter.className = 'text-sm text-yellow-600 mt-1';
-        } else {
-            counter.className = 'text-sm text-gray-500 mt-1';
-        }
+        previewContainer.classList.remove('hidden');
+        noPreview.classList.add('hidden');
+        previewText.textContent = 'Loading image...';
+        previewText.className = 'text-gray-500 text-sm mt-2';
+        previewImage.classList.add('hidden');
+
+        // 🔥 FIX UTAMA
+        previewImage.src = '';
+        previewImage.referrerPolicy = "no-referrer";
+
+        previewImage.onload = () => {
+            previewImage.classList.remove('hidden');
+            previewText.textContent = 'Image preview loaded';
+            previewText.className = 'text-green-600 text-sm mt-2';
+        };
+
+        previewImage.onerror = () => {
+            previewImage.classList.add('hidden');
+            previewText.textContent = 'Gambar tidak bisa dimuat';
+            previewText.className = 'text-red-600 text-sm mt-2';
+        };
+
+        // SET SRC TERAKHIR
+        previewImage.src = url;
     });
+});
 </script>
 @endpush
+
+
 @endsection

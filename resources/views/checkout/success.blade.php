@@ -43,9 +43,9 @@
                        class="bg-[#10a2a2] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#0d8c8c] transition duration-300">
                         Continue Shopping
                     </a>
-                    <a href="{{ route('profile') }}" 
+                    <a href="{{ route('products') }}" 
                        class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition duration-300">
-                        View Orders
+                        View Product
                     </a>
                 </div>
             </div>

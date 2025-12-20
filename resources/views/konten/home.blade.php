@@ -16,7 +16,7 @@
                         VHGH MADE FOR YOU!
                     </div>
                     <p class="text-lg text-gray-600 mb-8">
-                        To Become A Better Wibu! Discover amazing anime merchandise and collectibles that will level up your wibu journey.
+                        To Become A Better Wibu! Discover amazing anime clothing and collectibles that will level up your wibu journey.
                     </p>
                     
                     @auth

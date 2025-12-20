@@ -8,8 +8,9 @@
     <p class="text-gray-600">Welcome back, Administrator!</p>
 </div>
 
-<!-- Statistics Cards -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<!-- Statistics Cards --><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-10">
+
+
     <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
         <div class="flex items-center">
             <div class="p-3 rounded-full bg-blue-100 text-blue-600 mr-4">
@@ -46,17 +47,7 @@
         </div>
     </div>
 
-    <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-        <div class="flex items-center">
-            <div class="p-3 rounded-full bg-orange-100 text-orange-600 mr-4">
-                <i class="fas fa-dollar-sign text-xl"></i>
-            </div>
-            <div>
-                <p class="text-sm font-medium text-gray-600">Total Revenue</p>
-                <p class="text-2xl font-bold text-gray-800">${{ number_format($totalRevenue, 2) }}</p>
-            </div>
-        </div>
-    </div>
+   
 </div>
 
 <!-- Charts Section -->

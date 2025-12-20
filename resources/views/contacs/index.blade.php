@@ -39,7 +39,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-gray-800 mb-1">Our Address</h3>
-                            <p class="text-gray-600">123 Anime Street, Akihabara<br>Tokyo 101-0021, Japan</p>
+                            <p class="text-gray-600">Cirebon, Jawa Barat<br>Indonesia</p>
                         </div>
                     </div>
 
@@ -50,7 +50,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-gray-800 mb-1">Phone Number</h3>
-                            <p class="text-gray-600">+81 3-1234-5678</p>
+                            <p class="text-gray-600">+62 812-5645-9876</p>
                         </div>
                     </div>
 
@@ -73,8 +73,8 @@
                         <div>
                             <h3 class="font-semibold text-gray-800 mb-1">Business Hours</h3>
                             <p class="text-gray-600">
-                                Monday - Friday: 9:00 AM - 6:00 PM JST<br>
-                                Saturday: 10:00 AM - 4:00 PM JST<br>
+                                Monday - Friday: 9:00 AM - 6:00 PM WIB<br>
+                                Saturday: 10:00 AM - 4:00 PM WIB<br>
                                 Sunday: Closed
                             </p>
                         </div>
@@ -85,18 +85,10 @@
                 <div class="mt-8">
                     <h3 class="font-semibold text-gray-800 mb-4">Follow Us</h3>
                     <div class="flex space-x-4">
-                        <a href="#" class="bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-700 transition duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-700 transition duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-700 transition duration-300">
+                        <a href="https://www.instagram.com/vhigh.id?igsh=bHZjajg3cWRnMXho" class="bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-700 transition duration-300">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-700 transition duration-300">
-                            <i class="fab fa-discord"></i>
-                        </a>
+                      
                     </div>
                 </div>
             </div>

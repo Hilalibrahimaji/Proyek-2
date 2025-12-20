@@ -26,16 +26,22 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <!-- Content -->
             <div>
-                <h2 class="text-4xl font-bold text-gray-800 mb-6">Our Story</h2>
-                <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                    VHGH was founded in 2025 with a simple mission: to help anime and manga enthusiasts 
-                    become better wibu through high-quality products and exceptional service.
-                </p>
-                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                    We believe that every wibu deserves access to the best merchandise, from limited edition 
-                    figures to comfortable apparel and unique collectibles. Our team is passionate about 
-                    anime culture and dedicated to bringing you authentic, high-quality products.
-                </p>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Cerita Kami</h2>
+              <p class="text-lg text-gray-600 mb-6 leading-relaxed text-left lg:text-justify">
+    VHGH didirikan pada tahun 2025 dengan tujuan menghadirkan pakaian bertema anime
+    yang berkualitas dan nyaman untuk digunakan sehari-hari.
+</p>
+
+<p class="text-lg text-gray-600 mb-8 leading-relaxed text-left lg:text-justify">
+    Kami percaya bahwa kecintaan terhadap anime bisa diekspresikan melalui gaya berpakaian.
+    Oleh karena itu, VHGH fokus menyediakan pakaian anime dengan desain eksklusif,
+    bahan berkualitas, serta detail yang rapi agar tidak hanya keren secara visual,
+    tetapi juga nyaman dipakai.
+    <br><br>
+    Setiap produk kami terinspirasi dari budaya anime dan dikembangkan untuk para penggemar
+    yang ingin menampilkan identitas mereka dengan cara yang simpel namun stylish.
+</p>
+
 
                 <!-- Mission & Vision -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -43,18 +49,18 @@
                         <div class="w-12 h-12 bg-[#10a2a2] rounded-full flex items-center justify-center text-white mb-4">
                             <i class="fas fa-bullseye text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Our Mission</h3>
-                        <p class="text-gray-600">
-                            To provide authentic, high-quality anime merchandise that brings joy to every wibu's collection.
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Misi Kami</h3>
+                        <p class="text-gray-600 text-justify">
+                        Menyediakan pakaian anime berkualitas tinggi dengan desain menarik, nyaman, dan terjangkau bagi para penggemar anime.ction.
                         </p>
                     </div>
                     <div class="bg-gray-50 p-6 rounded-lg">
                         <div class="w-12 h-12 bg-[#10a2a2] rounded-full flex items-center justify-center text-white mb-4">
                             <i class="fas fa-eye text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Our Vision</h3>
-                        <p class="text-gray-600">
-                            To become the most trusted destination for anime enthusiasts worldwide.
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Visi Kami</h3>
+                        <p class="text-gray-600 text-justify">
+                           Menjadi brand pakaian anime terpercaya yang mampu menghadirkan produk berkualitas dan desain yang disukai oleh komunitas anime.
                         </p>
                     </div>
                 </div>
@@ -65,10 +71,7 @@
                 <img src="https://images.unsplash.com/photo-1578632749014-ca77efd052eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                      alt="Anime Collection" 
                      class="rounded-lg shadow-2xl">
-                <div class="absolute -bottom-6 -left-6 bg-[#10a2a2] text-white px-6 py-3 rounded-lg shadow-lg">
-                    <p class="font-bold text-lg">Since 2025</p>
-                    <p class="text-sm">Serving the Wibu Community</p>
-                </div>
+              
             </div>
         </div>
     </div>
@@ -87,9 +90,10 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Value 1 -->
             <div class="text-center p-6">
-                <div class="w-16 h-16 bg-[#10a2a2] rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                    <i class="fas fa-shield-alt text-2xl"></i>
-                </div>
+               <div class="w-16 h-16 bg-[#10a2a2] rounded-full flex items-center justify-center mx-auto mb-4">
+    <i class="fas fa-shield-alt text-2xl text-black"></i>
+</div>
+
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Authenticity</h3>
                 <p class="text-gray-600">
                     We guarantee all our products are 100% authentic and officially licensed. 
@@ -100,7 +104,7 @@
             <!-- Value 2 -->
             <div class="text-center p-6">
                 <div class="w-16 h-16 bg-[#10a2a2] rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                    <i class="fas fa-heart text-2xl"></i>
+                    <i class="fas fa-heart text-2xl text-black"></i>
                 </div>
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Passion</h3>
                 <p class="text-gray-600">
@@ -112,7 +116,7 @@
             <!-- Value 3 -->
             <div class="text-center p-6">
                 <div class="w-16 h-16 bg-[#10a2a2] rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                    <i class="fas fa-award text-2xl"></i>
+                    <i class="fas fa-award text-2xl text-black"></i>
                 </div>
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Quality</h3>
                 <p class="text-gray-600">
@@ -175,7 +179,7 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-16 bg-[#10a2a2] text-white">
+<section class="py-16 bg-[#10a2a2] text-black">
     <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold mb-4">Ready to Start Your Wibu Journey?</h2>
         <p class="text-xl mb-8 max-w-2xl mx-auto">
@@ -184,7 +188,7 @@
         <div class="flex justify-center space-x-4">
             @auth
                 <a href="{{ route('products') }}" 
-                   class="bg-white text-[#10a2a2] px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+                   class="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-black-100 transition duration-300">
                     Shop Now
                 </a>
             @else
