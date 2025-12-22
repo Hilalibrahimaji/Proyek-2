@@ -32,6 +32,10 @@
                         class="text-gray-600 hover:text-[#10a2a2] transition duration-300 {{ request()->routeIs('admin.products*') ? 'text-[#10a2a2] font-semibold' : '' }}">
                             <i class="fas fa-box mr-1"></i> Products
                         </a>
+                        <a href="{{ route('admin.contact.messages') }}" 
+                        class="text-gray-600 hover:text-[#10a2a2] transition duration-300 {{ request()->routeIs('admin.contact.*') ? 'text-[#10a2a2] font-semibold' : '' }}">
+                            <i class="fas fa-envelope mr-1"></i> Contact
+    </a>
                     </nav>
                 </div>
                 

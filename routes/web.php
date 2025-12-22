@@ -11,6 +11,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\MidtransController;
+use App\Http\Controllers\OrderController;
 
 
 
@@ -46,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update'); //
+    Route::get('/my.orders', [OrderController::class, 'myOrders'])->name('my.orders');
+    Route::get('/my-orders/{orderNumber}', [OrderController::class, 'show'])->name('my.orders.show');
+    
 });
 
 // Admin Routes - Harus Login sebagai Admin 
@@ -59,6 +63,9 @@ Route::middleware(['auth',  ])->prefix('admin')->group(function () {
     Route::post('/products/{id}/update', [AdminController::class, 'updateProduct'])->name('admin.products.update');
     Route::delete('/products/{id}/delete', [AdminController::class, 'deleteProduct'])->name('admin.products.delete');
     Route::delete('/users/{id}/delete', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::get('/contact-messages', [ContactController::class, 'adminMessages'])->name('admin.contact.messages');
+    Route::get('/contact-read/{id}', [ContactController::class, 'markAsRead'])->name('admin.contact.read');
+    Route::get('/contact-delete/{id}', [ContactController::class, 'deleteMessage'])->name('admin.contact.delete');
 });
 
 // Cart Routes
@@ -79,4 +86,13 @@ Route::post('/midtrans/callback', [MidtransController::class, 'callback']);
 
 
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/my-orders', [OrderController::class, 'index'])
+        ->name('orders.index');
+
+    Route::get('/orders/{order_number}', [OrderController::class, 'show'])
+        ->name('orders.show');
+});
+
 

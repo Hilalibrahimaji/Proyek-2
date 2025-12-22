@@ -97,9 +97,15 @@
             <div class="flex justify-between items-center mb-3">
                 <span class="text-[#10a2a2] font-bold text-lg">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
 
-                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">
+                <span
+                    class="text-xs px-2 py-1 rounded font-semibold
+                    {{ $product->stock > 0 
+                        ? 'bg-green-100 text-green-800' 
+                        : 'bg-red-100 text-red-800' }}">
+                        
                     {{ $product->stock > 0 ? 'In Stock' : 'Out of Stock' }}
                 </span>
+
             </div>
             <form action="{{ route('cart.add') }}" method="POST">
                 @csrf

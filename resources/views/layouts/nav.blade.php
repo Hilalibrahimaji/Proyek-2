@@ -69,14 +69,17 @@
                                 <a href="{{ route('profile') }}" class="dropdown-item">
                                     <i class="fas fa-user mr-2"></i> Profile
                                 </a>
+                                <a href="{{ route('my.orders') }}" class="dropdown-item">
+                                    <i class="fas fa-box mr-2"></i> My Orders
+                                </a>
                             @endif
-
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="dropdown-item w-full text-left">
                                     <i class="fas fa-sign-out-alt mr-2"></i> Logout
                                 </button>
                             </form>
+
                         </div>
                     </div>
 

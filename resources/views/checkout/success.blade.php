@@ -43,9 +43,9 @@
                        class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition duration-300">
                         Back to Home
                     </a>
-                    <a href="{{ route('products') }}" 
+                    <a href="{{ route('orders.show', $order->order_number) }}" 
                        class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition duration-300">
-                        View Product
+                        View Order
                     </a>
                 </div>
             </div>
