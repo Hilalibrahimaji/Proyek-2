@@ -39,9 +39,9 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="{{ route('products') }}" 
-                       class="bg-[#10a2a2] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#0d8c8c] transition duration-300">
-                        Continue Shopping
+                    <a href="{{ route('home') }}" 
+                       class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition duration-300">
+                        Back to Home
                     </a>
                     <a href="{{ route('products') }}" 
                        class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition duration-300">

@@ -92,43 +92,9 @@
 
                     <!-- Payment Method -->
                     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Payment Method</h2>
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Centang Ini</h2>
                         
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <input type="radio" id="credit_card" name="payment_method" value="credit_card" checked
-                                       class="h-4 w-4 text-[#10a2a2] focus:ring-[#10a2a2] border-gray-300">
-                                <label for="credit_card" class="ml-3 block text-sm font-medium text-gray-700">
-                                    <div class="flex items-center">
-                                        <i class="fab fa-cc-visa text-blue-600 text-xl mr-2"></i>
-                                        <i class="fab fa-cc-mastercard text-red-600 text-xl mr-2"></i>
-                                        Credit/Debit Card
-                                    </div>
-                                </label>
-                            </div>
-
-                            <div class="flex items-center">
-                                <input type="radio" id="paypal" name="payment_method" value="paypal"
-                                       class="h-4 w-4 text-[#10a2a2] focus:ring-[#10a2a2] border-gray-300">
-                                <label for="paypal" class="ml-3 block text-sm font-medium text-gray-700">
-                                    <div class="flex items-center">
-                                        <i class="fab fa-paypal text-blue-500 text-xl mr-2"></i>
-                                        PayPal
-                                    </div>
-                                </label>
-                            </div>
-
-                            <div class="flex items-center">
-                                <input type="radio" id="bank_transfer" name="payment_method" value="bank_transfer"
-                                       class="h-4 w-4 text-[#10a2a2] focus:ring-[#10a2a2] border-gray-300">
-                                <label for="bank_transfer" class="ml-3 block text-sm font-medium text-gray-700">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-university text-green-600 text-xl mr-2"></i>
-                                        Bank Transfer
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
+                    
 
                         <!-- Terms and Conditions -->
                         <div class="mt-6">

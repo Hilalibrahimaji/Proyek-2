@@ -78,7 +78,7 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     @foreach($products as $product)
     <!-- Di dalam product loop -->
- <div class="bg-sky-200 rounded-lg shadow-md overflow-hidden">
+ <div class="bg-teal-200 rounded-lg shadow-md overflow-hidden">
 
         <a href="{{ route('products.show', $product->id) }}">
     <div class="w-full h-48 bg-white overflow-hidden">
@@ -87,7 +87,7 @@
     </div>
 </a>
 
-     <div class="p-4 bg-blue-200 border-t border-teal-200">
+     <div class="p-4 bg-teal-300>
 
 
             <a href="{{ route('products.show', $product->id) }}" class="hover:text-[#10a2a2] transition duration-300">
