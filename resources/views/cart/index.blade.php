@@ -202,17 +202,7 @@
                         </div>
 
                         <!-- Promo Code -->
-                        <div class="mb-6">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
-                            <div class="flex gap-2">
-                                <input type="text" 
-                                       placeholder="Enter promo code" 
-                                       class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10a2a2] focus:border-[#10a2a2]">
-                                <button class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition duration-300">
-                                    Apply
-                                </button>
-                            </div>
-                        </div>
+            
 
                         <!-- Checkout Button -->
                         <a href="{{ route('checkout') }}" 

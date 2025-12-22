@@ -162,7 +162,7 @@
                                 <div class="flex justify-between text-lg font-bold text-gray-800">
                                     <span>Total</span>
                                     <span>${{ number_format($total, 2) }}</span>
-                                </div>
+                                </div>  
                             </div>
                         </div>
 
